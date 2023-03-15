@@ -10,11 +10,7 @@ document.addEventListener(
           function (tabs) {
             chrome.tabs.sendMessage(
               tabs[0].id,
-              { method: "translate" },
-              function (response) {
-                if (response.method == "translate") {
-                }
-              }
+              { method: "translate" }
             );
           }
         );
