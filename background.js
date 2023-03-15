@@ -26,7 +26,7 @@ async function openBilingual() {
       var cuesTextList = getTexts(cues);
 
       getTranslation(cuesTextList, (translatedText) => {
-        var translatedList = translatedText.split(" z~~~z");
+        var translatedList = translatedText.split(".");
         translatedList.splice(-1, 1);
 
         for (let i = 0; i < endSentence.length; i++) {
@@ -46,12 +46,9 @@ async function openBilingual() {
 }
 
 String.prototype.replaceAt = function (index, replacement) {
-  return (
-    this.substr(0, index) +
-    replacement +
-    this.substr(index + replacement.length)
-  );
+  return this.slice(0, index) + replacement + this.slice(index + 1);
 };
+
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -64,7 +61,7 @@ function getTexts(cues) {
     if (cues[i].text[cues[i].text.length - 1] == ".") {
       cues[i].text = cues[i].text.replaceAt(
         cues[i].text.length - 1,
-        ". z~~~z "
+        "."
       );
     }
 
